@@ -143,12 +143,12 @@ Refer to Figure \ref{fig:architecture}.
 
 \begin{enumerate}
   \item The repository URL for the required source code to deploy this solution is:\\
-  \href{https://github.com/kensasongko/lksccjabar2024modul3_aplikasi}{https://github.com/kensasongko/lksccjabar2024modul3\_aplikasi}
+  \href{https://github.com/kensasongko/lksccjabar2024modul2_aplikasi}{https://github.com/kensasongko/lksccjabar2024modul2\_aplikasi}
   \item This solution must be deployed in \textbf{us-east-2 (Ohio)} region. Deploying in another region will result in a major point reduction.
   \item An automated scoring system will check your AWS account to calculate the score of your task.
   \item In order check your progress, the scoring system needs an AWS credential with administrator privilege. You will be asked to provide the AWS credential.
   \item AWS tag is used by the scoring system to find your solution. Forgetting to add the required tag or adding the same tag value to multiple instance may result in an unexpected behavior and thus lower your score.
-  \item The system will calculate 90\% of the final score. The remaining 10\% will be evaluated by checking manually in front of the participants.
+  \item The system will calculate 90\% of the final score. The remaining 10\% will be evaluated by checking the assignment manually.
   \item If multiple participants complete the assignment, their completion times will factor into the manual scoring process. For instance, the first participant to finish will receive a full score, while subsequent finishers will incur minor penalties.
   \item Mosquitto MQTT client is used as an example to test the deployment.
 \end{enumerate}
@@ -206,7 +206,6 @@ Your task is to create the solution from the section \ref{architecture}.
     \item Rule action: Amazon Data Firehose stream
     \item Amazon Data Firehose stream: The stream you have previously created
     \item Separator: \lstinline{\n}
-    \item Batch mode: Enabled
     \item IAM Role: Create new role named IoTRuleToFirehoseRole
     \item Tag: Key=LKS-CC-2024, Value=LKS-IOT-RULE
   \end{itemize}
@@ -221,8 +220,7 @@ Your task is to create the solution from the section \ref{architecture}.
     \item Auto-generate new certificate.
     \item Attach the IoT Policy you have created.
   \end{itemize}
-\item Create a CNAME record in Route 53 named lks-iot from your domain with your IoT Core device data endpoint as the value of the record.
-\item Request a public certificate for *.[YOUR\_DOMAIN] from AWS Certificate Manager and validate the certificate using DNS validation.
+\item Request a public certificate from AWS Certificate Manager.
 \item Create IoT domain configurations with the following configuration:
   \begin{itemize}
     \item Name: lks-iot
@@ -230,6 +228,7 @@ Your task is to create the solution from the section \ref{architecture}.
     \item Domain name: lks-iot.[YOUR\_DOMAIN]
     \item Server certificate: Choose the certificate you have previously requested in ACM.
   \end{itemize}
+\item Create the correct record in Route 53 to point lks-iot.[YOUR\_DOMAIN] to your IoT Core data endpoint.
 \end{enumerate}
 \section{How to test your deployment}
 \begin{enumerate}
@@ -265,12 +264,4 @@ Client d1 sending DISCONNECT
   \item \href{https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html}{AWS Certificate Manager}
 \end{itemize}
 \section*{Good luck!}
-
-\begin{equation}
-cos(\theta) = \frac{\vec{A}\cdot\vec{B}}{\lVert \vec{A} \rVert \cdot \lVert \vec{B} \rVert} = \frac{\sum_{i=1}^{n}A_i B_i}{\sqrt{\sum_{i=1}^{n}A_i^2} \sqrt{\sum_{i=1}^{n}B_i^2}}
-\end{equation}
-
-\begin{equation}
-  KernelKMeansDistance(K_{ii}, K) = K_{ii} - \frac{2 * \sum_{x_j \in \pi_{c}} \alpha_{j} K_{ij}}{\sum_{x_j \in \pi_{c}} \alpha_{j}} + \frac{\sum_{x_j,x_l \in \pi_{c}} \alpha_{j} \alpha_{l} K_{jl}}{(\sum_{x{j}\in \pi_{c}} \alpha_{j})^2}
-\end{equation}
 \end{document}
